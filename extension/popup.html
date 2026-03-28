@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DeepGuard</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div id="app">
+
+    <!-- Header -->
+    <header>
+      <div id="logo">
+        <div id="logo-dot"></div>
+        <span id="logo-name">DeepGuard</span>
+      </div>
+      <span id="version">v1.0</span>
+    </header>
+
+    <!-- Status card -->
+    <div id="status-card">
+      <div id="status-indicator">
+        <div id="status-icon-wrap">
+          <div id="status-icon"></div>
+        </div>
+        <div id="status-text">
+          <div id="status-label">Scanning...</div>
+          <div id="status-sub">Analysing video on this page</div>
+        </div>
+      </div>
+
+      <div id="score-bar-wrap">
+        <div id="score-bar-track">
+          <div id="score-bar-fill"></div>
+          <div id="score-threshold-warn"  style="left: 45%"></div>
+          <div id="score-threshold-danger" style="left: 72%"></div>
+        </div>
+        <div id="score-labels">
+          <span>Real</span>
+          <span id="score-pct">—</span>
+          <span>Fake</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Signal breakdown -->
+    <div id="signals-section">
+      <div class="section-title">Detection signals</div>
+      <div id="signals-list">
+        <div class="signal-row" data-key="visual">
+          <span class="signal-name">Visual artifacts</span>
+          <div class="signal-bar-track"><div class="signal-bar-fill"></div></div>
+          <span class="signal-val">—</span>
+        </div>
+        <div class="signal-row" data-key="audio">
+          <span class="signal-name">Audio codec</span>
+          <div class="signal-bar-track"><div class="signal-bar-fill"></div></div>
+          <span class="signal-val">—</span>
+        </div>
+        <div class="signal-row" data-key="lipsync">
+          <span class="signal-name">Lip-sync desync</span>
+          <div class="signal-bar-track"><div class="signal-bar-fill"></div></div>
+          <span class="signal-val">—</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- No video state -->
+    <div id="no-video-msg" class="hidden">
+      <div id="no-video-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M15 10l4.553-2.276A1 1 0 0121 8.65v6.7a1 1 0 01-1.447.894L15 14M3 8a2 2 0 012-2h8a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2V8z"/>
+        </svg>
+      </div>
+      <p>No video detected on this page</p>
+      <p class="sub">DeepGuard will activate when a video plays</p>
+    </div>
+
+    <!-- History -->
+    <div id="history-section">
+      <div class="section-title">Recent detections</div>
+      <div id="history-list"></div>
+      <div id="history-empty" class="hidden">No detections yet</div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <span id="monitoring-dot"></span>
+      <span>Monitoring active</span>
+      <button id="settings-btn">Settings</button>
+    </footer>
+
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>

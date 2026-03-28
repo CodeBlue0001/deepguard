@@ -1,0 +1,56 @@
+{
+  "manifest_version": 3,
+  "name": "DeepGuard — Live Deepfake Detector",
+  "version": "1.0.0",
+  "description": "Real-time deepfake detection for live video streams. Green = safe, red = warning.",
+
+  "permissions": [
+    "activeTab",
+    "storage",
+    "alarms"
+  ],
+
+  "host_permissions": [
+    "<all_urls>"
+  ],
+
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon-green-16.png",
+      "32": "icons/icon-green-32.png",
+      "48": "icons/icon-green-48.png",
+      "128": "icons/icon-green-128.png"
+    },
+    "default_title": "DeepGuard — Monitoring"
+  },
+
+  "icons": {
+    "16": "icons/icon-green-16.png",
+    "48": "icons/icon-green-48.png",
+    "128": "icons/icon-green-128.png"
+  },
+
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "overlay.css",
+        "models/*"
+      ],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}

@@ -1,0 +1,281 @@
+/* DeepGuard — Popup Styles */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
+  font-size: 13px;
+  background: #0f0f11;
+  color: #e8e8e8;
+  width: 320px;
+  min-height: 200px;
+}
+
+#app { display: flex; flex-direction: column; }
+
+/* ── Header ── */
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px 10px;
+  border-bottom: 0.5px solid rgba(255,255,255,0.08);
+}
+
+#logo { display: flex; align-items: center; gap: 8px; }
+
+#logo-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #27a96c;
+  animation: pulse-green 2.5s ease-in-out infinite;
+}
+
+@keyframes pulse-green {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.5; }
+}
+
+#logo-name { font-size: 14px; font-weight: 600; letter-spacing: -0.01em; color: #fff; }
+#version   { font-size: 10px; color: #555; }
+
+/* ── Status card ── */
+
+#status-card {
+  padding: 14px;
+  border-bottom: 0.5px solid rgba(255,255,255,0.08);
+}
+
+#status-indicator { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+
+#status-icon-wrap {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.4s;
+}
+
+#status-icon {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  transition: background 0.4s;
+}
+
+/* State colours */
+body.state-safe    #status-icon-wrap { background: rgba(39, 169, 108, 0.15); }
+body.state-safe    #status-icon      { background: #27a96c; }
+body.state-safe    #logo-dot         { background: #27a96c; }
+body.state-warning #status-icon-wrap { background: rgba(232, 158, 26, 0.15); }
+body.state-warning #status-icon      { background: #e89e1a; animation: pulse-warn 1s ease-in-out infinite; }
+body.state-warning #logo-dot         { background: #e89e1a; }
+body.state-danger  #status-icon-wrap { background: rgba(214, 57, 57, 0.18); }
+body.state-danger  #status-icon      { background: #d63939; animation: pulse-danger 0.6s ease-in-out infinite; }
+body.state-danger  #logo-dot         { background: #d63939; }
+body.state-idle    #status-icon-wrap { background: rgba(120,120,120,0.1); }
+body.state-idle    #status-icon      { background: #555; }
+
+@keyframes pulse-warn   { 0%,100%{opacity:1} 50%{opacity:0.45} }
+@keyframes pulse-danger { 0%,100%{opacity:1} 50%{opacity:0.3}  }
+
+#status-label {
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  line-height: 1.2;
+}
+
+body.state-safe    #status-label { color: #27a96c; }
+body.state-warning #status-label { color: #e89e1a; }
+body.state-danger  #status-label { color: #e05555; }
+
+#status-sub { font-size: 11px; color: #777; margin-top: 2px; }
+
+/* Score bar */
+
+#score-bar-wrap { }
+
+#score-bar-track {
+  position: relative;
+  height: 6px;
+  border-radius: 3px;
+  background: rgba(255,255,255,0.08);
+  overflow: visible;
+}
+
+#score-bar-fill {
+  height: 100%;
+  border-radius: 3px;
+  background: #27a96c;
+  transition: width 0.5s ease, background 0.4s;
+  width: 0%;
+}
+
+body.state-warning #score-bar-fill { background: #e89e1a; }
+body.state-danger  #score-bar-fill { background: #d63939; }
+
+#score-threshold-warn, #score-threshold-danger {
+  position: absolute;
+  top: -3px;
+  width: 1.5px;
+  height: 12px;
+  border-radius: 1px;
+}
+
+#score-threshold-warn   { background: rgba(232, 158, 26, 0.6); }
+#score-threshold-danger { background: rgba(214, 57, 57, 0.6); }
+
+#score-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 5px;
+  font-size: 10px;
+  color: #555;
+}
+
+#score-pct { color: #aaa; font-weight: 500; }
+
+/* ── Signals ── */
+
+#signals-section { padding: 12px 14px; border-bottom: 0.5px solid rgba(255,255,255,0.08); }
+
+.section-title {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+#signals-list { display: flex; flex-direction: column; gap: 8px; }
+
+.signal-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.signal-name {
+  font-size: 11px;
+  color: #999;
+  width: 108px;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.signal-bar-track {
+  flex: 1;
+  height: 4px;
+  border-radius: 2px;
+  background: rgba(255,255,255,0.07);
+  overflow: hidden;
+}
+
+.signal-bar-fill {
+  height: 100%;
+  border-radius: 2px;
+  background: #27a96c;
+  width: 0%;
+  transition: width 0.5s, background 0.4s;
+}
+
+.signal-val {
+  font-size: 11px;
+  color: #777;
+  width: 30px;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+/* ── No video ── */
+
+#no-video-msg {
+  padding: 24px 14px;
+  text-align: center;
+  border-bottom: 0.5px solid rgba(255,255,255,0.08);
+}
+
+#no-video-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 10px;
+  color: #555;
+}
+
+#no-video-msg p { color: #888; font-size: 12px; }
+#no-video-msg .sub { color: #555; font-size: 11px; margin-top: 4px; }
+
+/* ── History ── */
+
+#history-section { padding: 12px 14px 10px; }
+
+#history-list { display: flex; flex-direction: column; gap: 6px; max-height: 120px; overflow-y: auto; }
+
+.history-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  color: #777;
+}
+
+.history-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.history-dot.danger  { background: #d63939; }
+.history-dot.warning { background: #e89e1a; }
+
+.history-url { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: #888; }
+.history-score { color: #666; white-space: nowrap; }
+
+/* ── Footer ── */
+
+footer {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 14px;
+  border-top: 0.5px solid rgba(255,255,255,0.06);
+  font-size: 11px;
+  color: #555;
+}
+
+#monitoring-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: #27a96c;
+  animation: pulse-green 2.5s ease-in-out infinite;
+}
+
+#settings-btn {
+  margin-left: auto;
+  background: transparent;
+  border: 0.5px solid rgba(255,255,255,0.12);
+  border-radius: 5px;
+  color: #666;
+  font-size: 11px;
+  padding: 3px 8px;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s;
+}
+
+#settings-btn:hover { border-color: rgba(255,255,255,0.25); color: #aaa; }
+
+/* ── Util ── */
+
+.hidden { display: none !important; }
