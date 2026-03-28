@@ -7,7 +7,7 @@
   window.__deepguardV2 = true;
 
   // ─── Config ────────────────────────────────────────────────────────────────
-  const API_BASE       = 'https://your-deepguard-api.com';  // ← set your deployed URL
+  const API_BASE       = 'https://deepguard-fjjo.onrender.com';  // ← set your deployed URL
   const SAMPLE_MS      = 1500;     // send a frame to the cloud every 1.5s
   const SESSION_ID     = _getSessionId();
   const PROMPT_COOLDOWN_MS = 60000; // don't re-prompt the same video for 60s
